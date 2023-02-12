@@ -34,7 +34,7 @@ export class MarcadoresComponent implements AfterViewInit {
   @ViewChild('mapa') divMapa!: ElementRef;
   mapa!: mapboxgl.Map;
   zoomLevel: number = 15;
-  center: [number, number] = [ -75.921029433568, 45.28719674822362 ];
+  center: [number, number] = [ -84.26192652345543, 9.956353789698838 ];
 
   // Arreglo de marcadores
   marcadores: MarcadorColor[] = [];
@@ -86,10 +86,12 @@ export class MarcadoresComponent implements AfterViewInit {
 
   }
 
-  irMarcador( marker: mapboxgl.Marker ) {
-    this.mapa.flyTo({
-      center: marker.getLngLat()
-    });
+  irMarcador( marker: mapboxgl.Marker | undefined ) {
+    if (marker) {
+      this.mapa.flyTo({
+        center: marker.getLngLat()
+      });
+    }
   }
 
 
